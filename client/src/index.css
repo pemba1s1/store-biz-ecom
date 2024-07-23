@@ -26,6 +26,10 @@
   height: 80px;
 }
 
+.footer-container {
+  width: 20%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
