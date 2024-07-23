@@ -1,15 +1,27 @@
+import { VscAccount } from "react-icons/vsc";
+import SearchBar from "../searchbar";
+import { IoCartOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
   return (
-    <nav className="navbar">
+    <nav className="flex px-20 justify-between navbar items-center text-xl">
       <div className="navbar__logo">
-        <a href="/">
+        <Link to="/">
           <img src="/logo/logo.png" className="logo" alt="Vite logo" />
-        </a>
+        </Link>
       </div>
-      <h1 className="text-3xl font-bold">
-      Hello world!
-    </h1>
-      <h1 className="navbar__title">Vite + React</h1>
+      <div>
+        <SearchBar />
+      </div>
+      <div className="flex gap-5">
+        <Link to="/account" className="flex items-center gap-1 text-black">
+          <VscAccount /> Account
+        </Link>
+        <Link to="/cart" className="flex items-center gap-1 text-black">
+          <IoCartOutline /> Cart
+        </Link>
+      </div>
     </nav>
   )
 }
