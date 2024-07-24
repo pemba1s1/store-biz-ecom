@@ -68,23 +68,18 @@ const socialLinks = {
 export default function Footer() {
   return (
     <footer className="flex flex-col items-center bg-[#F1F1F1] py-5">
-      <div className="flex justify-center gap-y-10 flex-wrap w-[90%] mb-3">
+      <div className="flex justify-center gap-y-10 flex-wrap store-biz-container mb-3">
         {footerFields.map((field, index) => (
           <div key={index} className="footer-container">
             <p className="font-bold mb-2">{field.title}</p>
-            {field.links.map((link, index) => {
-              return (
-                <p key={index}><Link className="text-black font-normal" to={link.link}>{link.title}</Link></p>
-                )
-              } 
-            )}
+            {field.links.map((link, index) =>  <p key={index}><Link className="text-black font-normal" to={link.link}>{link.title}</Link></p>)}
           </div>
         ))}
         
         <div className="footer-container">
           <p className="font-bold mb-2">{socialLinks.title}</p>
           <div className="flex gap-3 text-3xl">
-            {socialLinks.links.map((link) => link.icon )}
+            {socialLinks.links.map((link,index) => <div key={ `${ index }-${ link.title }` }>{link.icon}</div> )}
           </div>
         </div>
       </div>

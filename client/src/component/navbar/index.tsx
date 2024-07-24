@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="flex w-[90%] mx-auto justify-between navbar items-center align-middle text-xl">
+    <nav className="flex store-biz-container justify-between navbar items-center align-middle text-xl">
       <div className="navbar__logo">
         <Link to="/">
           <img src="/logo/logo.png" className="logo" alt="Vite logo" />
