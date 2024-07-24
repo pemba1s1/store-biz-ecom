@@ -67,7 +67,7 @@ const socialLinks = {
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center bg-[#F1F1F1] py-5">
+    <footer className="flex flex-col items-center bg-[#F1F1F1] py-5 mt-10">
       <div className="flex justify-center gap-y-10 flex-wrap store-biz-container mb-3">
         {footerFields.map((field, index) => (
           <div key={index} className="footer-container">

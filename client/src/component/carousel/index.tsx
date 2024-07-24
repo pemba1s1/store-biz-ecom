@@ -33,7 +33,7 @@ export default function Carousel() {
             key={index}
             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
           >
-            <img src={src} className="block w-full h-full object-cover" alt={`Slide ${index + 1}`} />
+            <img src={src} className="block w-full h-full object-cover rounded-lg" alt={`Slide ${index + 1}`} />
           </div>
         ))}
       </div>
@@ -51,14 +51,14 @@ export default function Carousel() {
       </div>
       <button
         type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none hover:bg-gray-400"
+        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none rounded-l-lg hover:bg-gray-400"
         onClick={prevSlide}
       >
         <GrPrevious />
       </button>
       <button
         type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none hover:bg-gray-400"
+        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none rounded-r-lg hover:bg-gray-400"
         onClick={nextSlide}
       >
         <GrNext />

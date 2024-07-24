@@ -1,19 +1,98 @@
+import Banner from "../../component/banner";
 import Carousel from "../../component/carousel";
+import Category from "../../component/category";
+import ProductCardContainer from "../../component/product-card-container";
+
+const features = [
+  {
+    title: "Premium Quality",
+    image: "/images/features/1.png",
+  },
+  {
+    title: "24 Hours Customer Service",
+    image: "/images/features/2.png",
+  },
+  {
+    title: "Track Your Order In Real Time",
+    image: "/images/features/3.png",
+  },
+  {
+    title: "One Week Delivery All Over Canada",
+    image: "/images/features/4.png",
+  },
+  {
+    title: "Budget Friendly",
+    image: "/images/features/5.png",
+  },
+  {
+    title: "Secure Payment",
+    image: "/images/features/6.png",
+  },
+]
 
 export default function Home() {
   return (
     <>
-      <div className="bg-[#F1F1F1] mt-4 h-full">
-        <div className="flex justify-between store-biz-container">
-          <div className="w-[27%] border">Menu</div>
-          <div className="w-[70%] h-full border">
+      <div className="bg-[#F1F1F1] h-full">
+        <div className="flex justify-between store-biz-container py-5">
+          <div className="w-[23%] border bg-white rounded-lg">
+            <Category />
+          </div>
+          <div className="w-[75%] h-full rounded-lg">
             <Carousel />
           </div>
         </div>
       </div>
       
-      <div className="store-biz-container">
-          Top Deals
+      <ProductCardContainer title="Top Deals" url="/deal"/>
+
+      <div className="store-biz-container mt-10 flex justify-between">
+        <Banner title="Clearance Sale" description="Starting July 23 (Up to 50%)" image="/images/banner/discount.png" />
+        <Banner title="Credit Card" description="Get Biz Points When Using Credit Card" image="/images/banner/credit.png" />
+      </div>
+
+      <ProductCardContainer title="New Arrivals" url="/deal"/>
+
+      <div className="relative mt-10">
+        <img src="/images/hero.png" alt="ads" className="w-full h-[633px] object-cover" />
+        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-end pr-20">
+          <div className="h-[524px] w-[524px] bg-white p-5">
+            <div className="border-2 border-black h-full w-full py-6 px-8">
+              <div>
+                <p className="text-2xl font-bold">Join The Club</p>
+                <p className="font-bold">Subscribe today to receive offers available only to our subscribers.</p>
+              </div>
+              <form className="flex flex-col mt-7">
+                <input type="text" placeholder="Enter your name" className="w-full border-b-2 border-black text-2xl p-3" />
+                <input type="email" placeholder="Enter your email" className="w-full border-b-2 border-black text-2xl mt-5 p-3" />
+                <p className="text-xs mt-4 mb-6">
+                  By subscribing, you agree to our <a href="/terms" className="underline">Terms and Conditions</a> and <a href="/privacy" className="underline">Privacy Policy</a>.
+                </p>
+                <div>
+                  <input type="checkbox" id="terms" name="terms" className="mr-2" /> 
+                  <label htmlFor="terms">I agree to the terms and conditions</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="offers" name="offers" className="mr-2" /> 
+                  <label htmlFor="offers">I want to receive special offers.</label>
+                </div>
+                <button onClick={e => e.preventDefault()} className="bg-white text-black border-2 border-black py-3 font-bold text-lg w-full mt-4 hover:bg-black hover:text-white">Subscribe</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="store-biz-container mt-10 pb-10">
+        <p className="text-center text-2xl font-bold">What Makes Us Different Makes Us Great </p>
+        <div className="flex justify-between mt-8">
+          {features.map((feature, index) => (
+            <div key={index} className="w-[16%]">
+              <img src={feature.image} alt="feature" className="mx-auto" />
+              <p className="text-center font-bold mt-5">{ feature.title }</p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   )
