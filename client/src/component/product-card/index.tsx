@@ -12,7 +12,7 @@ export default function ProductCard({ id, image, title, price, discount } : Prod
   }, [discount]);
 
   const handleClick = () => {
-    navigate(`product/${id}`);
+    navigate(`/product/${id}`);
   }
 
   return (
@@ -25,10 +25,12 @@ export default function ProductCard({ id, image, title, price, discount } : Prod
       <div className="px-3 py-2">
         <h2 className="text-lg font-bold">{title}</h2>
         <p className="text-xl font-semibold mt-2">${productPrice}</p>
-        <p className="text-sm mt-2">
-          <span className="line-through">${price}</span>
-          <span className="text-red-500 ml-2">{discount}% off</span>
-        </p>
+        {discount &&
+          <p className="text-sm mt-2">
+            <span className="line-through">${price}</span>
+            <span className="text-red-500 ml-2">{discount}% off</span>
+          </p>
+        }
       </div>
     </div>
   );

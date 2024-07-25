@@ -5,7 +5,7 @@ export default function ProductDetailPage () {
   return (
     <>
       <ProductDetail />
-      <ProductCardContainer title="You Might Also Like"/>
+      <ProductCardContainer title="You Might Also Like" endpoint="/product"/>
     </>
   )
 } 

@@ -12,7 +12,6 @@ export default function Cart() {
   const [taxes, setTaxes] = useState("");
   const [total, setTotal] = useState("");
 
-
   useEffect(() => {
     if (cartItems.length === 0) return;
     let subTotal = 0;

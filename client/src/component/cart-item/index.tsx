@@ -6,16 +6,20 @@ import useStoreBizStore from "../../store/store";
 
 export default function CartItem({ product } : { product: Product }) {
   const [quantity, setQuantity] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
   const { cartItems, setCartItems } = useStoreBizStore();
 
   useEffect(() => {
     if (product.quantity) {
       setQuantity(product.quantity);
-      console.log("caclulating total")
-      console.log(product)
-      console.log(parseFloat(product.price))
-      setTotal(parseFloat(product.price) * product.quantity);
+      if (product.discount) {
+        const priceAfterDiscount = (parseFloat(product.price) - (parseFloat(product.price) * (parseFloat(product.discount) / 100))).toFixed(2);
+        setTotal((parseFloat(priceAfterDiscount) * product.quantity).toFixed(2));
+        setItemPrice(priceAfterDiscount);
+      } else {
+        setTotal((parseFloat(product.price) * product.quantity).toFixed(2));
+      }
     }
   }, [product.quantity]);
 
@@ -68,7 +72,8 @@ export default function CartItem({ product } : { product: Product }) {
         </div>
       </div>
       <div>
-        <p className="text-lg font-semibold mt-2">{product.price}</p>
+        <p className="text-lg font-semibold mt-2">{itemPrice}</p>
+        <p className="line-through">${product.price}</p>
       </div>
       </div>
       <div className="flex justify-between text-xl font-bold border-b border-black pb-3">
