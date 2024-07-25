@@ -1,7 +1,8 @@
-import ProductCard, { ProductCardProps } from "../product-card";
+import { Product } from "../../types/types";
+import ProductCard from "../product-card";
 
 interface ProductCardSliderProps {
-  products: ProductCardProps[];
+  products: Product[];
 }
 
 export default function ProductCardSlider({ products } : ProductCardSliderProps) {
