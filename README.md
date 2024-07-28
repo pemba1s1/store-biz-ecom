@@ -19,7 +19,7 @@
 - `price`: Number
 - `category`: String
 - `stock`: Number
-- `imageUrl`: String
+- `image`: String
 
 **Order Items Schema (MongoDB)**
 

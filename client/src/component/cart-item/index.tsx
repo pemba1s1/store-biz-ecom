@@ -3,12 +3,19 @@ import { MdDelete } from "react-icons/md";
 import { Product } from "../../types/types";
 import { useEffect, useState } from "react";
 import useStoreBizStore from "../../store/store";
+import QuantityInput from "../input/quantity-input";
 
 export default function CartItem({ product } : { product: Product }) {
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState("");
   const [itemPrice, setItemPrice] = useState("");
+  const [quantityInputType, setQuantityInputType] = useState("select");
   const { cartItems, setCartItems } = useStoreBizStore();
+
+  useEffect(() => {
+    if (product.quantity && product.quantity > 9) setQuantityInputType("input");
+    else setQuantityInputType("select");  
+  }, []);
 
   useEffect(() => {
     if (product.quantity) {
@@ -29,7 +36,12 @@ export default function CartItem({ product } : { product: Product }) {
     localStorage.setItem("cart", JSON.stringify(newCartItems));
   }
 
-  const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleQuantityChange = (e) => {
+    if (e.target.value === "more") {
+      setQuantity(10);
+      setQuantityInputType("input");
+      return;
+    }
     const qty = parseInt(e.target.value);
     setQuantity(qty);
     const foundItem = cartItems.find((item: Product) => item.id === product.id);
@@ -52,21 +64,7 @@ export default function CartItem({ product } : { product: Product }) {
         <div className="ml-5">
         <p className="text-xl font-bold">{product.title}</p>
         <div className="flex items-center justify-center mt-3 gap-4">
-          <select 
-            className="px-5 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-            value={quantity} 
-            onChange={handleQuantityChange}
-          >
-            <option value="1">Qty: 1</option>
-            <option value="2">Qty: 2</option>
-            <option value="3">Qty: 3</option>
-            <option value="4">Qty: 4</option>
-            <option value="5">Qty: 5</option>
-            <option value="6">Qty: 6</option>
-            <option value="7">Qty: 7</option>
-            <option value="8">Qty: 8</option>
-            <option value="9">Qty: 9</option>
-          </select>
+          <QuantityInput quantity={quantity} handleQuantityChange={handleQuantityChange} quantityInputType={quantityInputType} />
           <button className="flex gap-1 text-red-500 text-xl items-center" onClick={handleRemove}><MdDelete className="text-3xl"/>Remove</button>
         </div>
         </div>
