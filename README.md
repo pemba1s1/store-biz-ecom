@@ -45,6 +45,11 @@ Install Dependencies:
 npm install
 npm run install-client
 ````
+Copy env files
+````
+cp .env.example .env
+cd client && cp .env.example .env
+````
 Run Server
 ````
 npm run server
