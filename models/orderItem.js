@@ -14,7 +14,7 @@ const orderItemSchema = new mongoose.Schema({
     product_id: String,
     quantity: Number
   }]
-});
+},{ timestamps: true });
 
 const OrderItemModel = mongoose.model('OrderItem', orderItemSchema);
 exports.default = OrderItemModel;

@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema({
   stock: {
     type: Number
   }
-});
+},{ timestamps: true });
 
 const ProductModel = mongoose.model('Product', productSchema);
 
