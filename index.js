@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
+const connectDB = require('./config/db');
 
 const app = express();
 app.use(express.json());
@@ -85,15 +86,10 @@ app.use(`${baseApiUrl}/new-arrival`, function(req, res) {
 });
 
 
-function connectDB() {
-  mongoose.connect(process.env.DB_URL)
-  .then(async () => {
-    console.log('Connected to MongoDB');
-    app.listen(process.env.PORT, () => {
-      console.log(`Server running on port ${process.env.PORT}`);
-    });
-  })
-  .catch(err => {
-    console.error('Error:', err);
+connectDB().then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
   });
-}
+}).catch(err => {
+  console.error('Error:', err);
+});

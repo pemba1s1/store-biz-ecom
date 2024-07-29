@@ -50,6 +50,10 @@ Copy env files
 cp .env.example .env
 cd client && cp .env.example .env
 ````
+Seed Database
+````
+node seed.js
+````
 Run Server
 ````
 npm run server

@@ -1,7 +1,6 @@
 
 const mongoose = require('mongoose');
 
-
 const productSchema = new mongoose.Schema({
   id: {
     type: String,
@@ -21,14 +20,8 @@ const productSchema = new mongoose.Schema({
   discount: {
     type: String
   },
-  quantity: {
-    type: Number
-  },
   image: {
     type: [String]
-  },
-  discountedPrice: {
-    type: String
   },
   rating: {
     type: Number
