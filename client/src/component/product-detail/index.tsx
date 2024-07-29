@@ -31,12 +31,12 @@ export default function ProductDetail () {
 
   const handleAddToCart = () => {
     if (!product) return;
-    const foundItem = cartItems.find((item: Product) => item.id === product.id);
+    const foundItem = cartItems.find((item: Product) => item._id === product._id);
     if (foundItem && foundItem.quantity) {
       foundItem.quantity += quantity;
     } else {
       cartItems.push({ 
-        id: product.id,
+        _id: product._id,
         price: product.price,
         title: product.title,
         image: product.image,

@@ -22,7 +22,7 @@ export default function ProductCardContainer({ title, url, endpoint }: ProductCa
     .catch((err) => {
       console.log(err)
     })
-  })
+  }, [])
 
   return (
     <div className="store-biz-container">

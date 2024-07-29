@@ -31,7 +31,7 @@ export default function CartItem({ product } : { product: Product }) {
   }, [product.quantity]);
 
   const handleRemove = () => {
-    const newCartItems = cartItems.filter((item: Product) => item.id !== product.id);
+    const newCartItems = cartItems.filter((item: Product) => item._id !== product._id);
     setCartItems(newCartItems);
     localStorage.setItem("cart", JSON.stringify(newCartItems));
   }
@@ -44,7 +44,7 @@ export default function CartItem({ product } : { product: Product }) {
     }
     const qty = parseInt(e.target.value);
     setQuantity(qty);
-    const foundItem = cartItems.find((item: Product) => item.id === product.id);
+    const foundItem = cartItems.find((item: Product) => item._id === product._id);
     if (foundItem) {
       foundItem.quantity = qty;
     } 
