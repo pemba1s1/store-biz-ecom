@@ -18,14 +18,14 @@ export default function Home() {
         </div>
       </div>
       
-      <ProductCardContainer title="Top Deals" url="/deal" endpoint="/product/top-deals"/>
+      <ProductCardContainer title="Top Deals" endpoint="/product/top-deals"/>
 
       <div className="store-biz-container mt-10 flex justify-between">
         <Banner title="Clearance Sale" description="Starting July 23 (Up to 50%)" image="/images/banner/discount.png" />
         <Banner title="Credit Card" description="Get Biz Points When Using Credit Card" image="/images/banner/credit.png" />
       </div>
 
-      <ProductCardContainer title="New Arrivals" url="/deal" endpoint="/product/new-arrival"/>
+      <ProductCardContainer title="New Arrivals" endpoint="/product/new-arrival"/>
 
       <div className="relative mt-10">
         <img src="/images/hero.png" alt="ads" className="w-full h-[633px] object-cover" />

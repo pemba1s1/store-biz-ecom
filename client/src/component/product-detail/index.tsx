@@ -5,6 +5,8 @@ import { Product } from "../../types/types";
 import useStoreBizStore from "../../store/store";
 import axios from "axios";
 import QuantityInput from "../input/quantity-input";
+import Review from "../review";
+import { set } from "mongoose";
 
 export default function ProductDetail () {
   const params = useParams();
@@ -26,7 +28,10 @@ export default function ProductDetail () {
       else setProductPrice(product.price);
       setLoading(false);
     })
-    .catch();
+    .catch(err=> {
+      console.log(err);
+      setLoading(false);
+    });
   },[params.id]);
 
   const handleAddToCart = () => {
@@ -48,24 +53,6 @@ export default function ProductDetail () {
     setCartItems(cartItems);
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }
-
-  const renderStars = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 !== 0;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-  
-    return (
-      <div className="flex gap-1 mt-3">
-        {Array(fullStars).fill(0).map((_, index) => (
-          <IoIosStar key={`full-${fullStars}-${index}`} className="text-yellow-500" />
-        ))}
-        {halfStar && <IoIosStarHalf key="half" className="text-yellow-500 opacity-50" />}
-        {Array(emptyStars).fill(0).map((_, index) => (
-          <IoIosStarOutline key={`empty-${emptyStars}-${index}`} className="text-gray-300" />
-        ))}
-      </div>
-    );
-  };
 
   const handleQuantityChange = (e) => {
     if (e.target.value === "more") {
@@ -101,7 +88,7 @@ export default function ProductDetail () {
             </div>
             <div className="w-[40%] pt-5">
               <p className="text-3xl font-bold">{product.title}</p>
-              {renderStars(product.rating? product.rating : 0)}
+              <Review rating={product.rating} />
               <p className="text-2xl font-semibold mt-2">${productPrice}</p>
               {
                 product.discount &&

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Product } from "../../types/types";
 import { useEffect, useState } from "react";
+import Review from "../review";
 
 export default function ProductCard(product : Product) {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function ProductCard(product : Product) {
       )}
       <div className="px-3 py-2">
         <h2 className="text-lg font-bold">{product.title}</h2>
+        <Review rating={product.rating} />
         <p className="text-xl font-semibold mt-2">${productPrice}</p>
         {product.discount &&
           <p className="text-sm mt-2">

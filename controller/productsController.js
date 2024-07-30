@@ -39,4 +39,18 @@ const getProductById = async function(req, res) {
   }
 }
 
-module.exports = { getTopDeals, getNewArrival, getProductById };
+const getProductsByFilter = async function(req, res) {
+  const { filters } = req.query;
+  console.log(filters)
+  const limit = 12;
+  
+  try {
+    const products = await ProductModel.find(filters);
+    // console.log(products)
+    return res.status(200).send(products);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = { getTopDeals, getNewArrival, getProductById, getProductsByFilter };
