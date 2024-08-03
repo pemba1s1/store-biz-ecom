@@ -1,14 +1,14 @@
 
 import ProductCard from "../product-card";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Filters, Product } from "../../types/types";
+import axiosInstance from "../../utils/axiosInstance";
  
 export default function ProductListContainer(filters: Filters) {  
   const [ products, setProducts ] = useState([]);
 
   useEffect(() => {
-    axios.get(import.meta.env.VITE_API_URL+'/product', {
+    axiosInstance.get('/product', {
       params: { filters }
     }).then(res => {
       setProducts(res.data)

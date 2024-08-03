@@ -1,6 +1,6 @@
 
-import axios from "axios";
 import { useState } from "react";
+import axiosInstance from "../../../utils/axiosInstance";
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ export default function AdminLogin() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    axios.post(import.meta.env.VITE_API_URL+ "/admin/login", {
+    axiosInstance.post("/admin/login", {
       username,
       password,
     }).then((res) => {

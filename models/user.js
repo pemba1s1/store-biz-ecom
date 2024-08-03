@@ -47,6 +47,10 @@ userSchema.methods.generateAuthToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
 };
 
+userSchema.methods.isAdmin = function () {
+  return this.role === UserRole.Admin;
+}
+
 const UserModel = mongoose.model('User', userSchema);
 
 module.exports = UserModel;

@@ -18,4 +18,8 @@ const AdminLogin = async (req,res) => {
   return res.status(200).send({ token });
 }
 
-module.exports = { AdminLogin };
+const IsAdmin = async (req,res) => {
+  return res.status(200).send('Admin');
+}
+
+module.exports = { AdminLogin, IsAdmin };

@@ -2,8 +2,8 @@
 import { Link } from "react-router-dom";
 import ProductCardSlider from "../product-card-slider";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Product } from "../../types/types";
+import axiosInstance from "../../utils/axiosInstance";
 
 interface ProductCardContainerProps {
   title: string;
@@ -15,7 +15,7 @@ export default function ProductCardContainer({ title, url, endpoint }: ProductCa
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    axios.get(import.meta.env.VITE_API_URL + endpoint)
+    axiosInstance.get(endpoint)
     .then((res) => {
       setProducts(res.data)
     })

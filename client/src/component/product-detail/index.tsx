@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { Product } from "../../types/types";
 import useStoreBizStore from "../../store/store";
-import axios from "axios";
 import QuantityInput from "../input/quantity-input";
 import Review from "../review";
-import { set } from "mongoose";
+import axiosInstance from "../../utils/axiosInstance";
 
 export default function ProductDetail () {
   const params = useParams();
@@ -19,7 +17,7 @@ export default function ProductDetail () {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(import.meta.env.VITE_API_URL + `/product/${params.id}`)
+    axiosInstance.get(`/product/${params.id}`)
     .then(res => {
       const product = res.data;
       console.log(product)
