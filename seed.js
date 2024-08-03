@@ -195,7 +195,8 @@ const category = [
 const admin = new UserModel({
   username: "admin",
   password: process.env.ADMIN_PASSWORD,
-  email: "admin@admin.com"
+  email: "admin@admin.com",
+  role: "admin",
 });
 
 connectDb().then(async () => {

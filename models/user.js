@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const UserRole = {
+  Admin: 'admin',
+  User: 'user'
+};
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -17,6 +22,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  role: {
+    type: String,
+    enum: Object.values(UserRole),
+    default: UserRole.User,
+    required: true    
   }
 },{ timestamps: true });
 
