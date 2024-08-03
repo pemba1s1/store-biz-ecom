@@ -2,11 +2,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-const UserRole = {
-  Admin: 'admin',
-  User: 'user'
-};
+const UserRole = require('../constants/userRole');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -48,7 +44,7 @@ userSchema.methods.comparePassword = async function (password) {
 
 // Method to generate JWT token
 userSchema.methods.generateAuthToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
 };
 
 const UserModel = mongoose.model('User', userSchema);
