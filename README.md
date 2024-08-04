@@ -62,3 +62,6 @@ Run Client
 ````
 npm run client
 ````
+Store Url: http://store.localhost:5173/
+
+Admin Url: http://admin.localhost:5173/
