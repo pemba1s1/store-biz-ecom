@@ -53,4 +53,21 @@ const getProductsByFilter = async function(req, res) {
   }
 }
 
-module.exports = { getTopDeals, getNewArrival, getProductById, getProductsByFilter };
+const uploadProduct = async function(req, res) {
+  const { title, price } = req.body;
+  if (!title || !price) {
+    return res.status(400).send('Missing required fields');
+  }
+
+  try {
+    const product = new ProductModel({
+      ...req.body
+    });
+    await product.save();
+    return res.status(201).send(product);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = { getTopDeals, getNewArrival, getProductById, getProductsByFilter, uploadProduct };
