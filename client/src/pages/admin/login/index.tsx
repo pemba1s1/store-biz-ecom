@@ -1,8 +1,12 @@
 
 import { useState } from "react";
 import axiosInstance from "../../../utils/axiosInstance";
+import { useNavigate } from "react-router-dom";
+import useAdminStoreBizStore from "../../../store/adminStore";
 
 export default function AdminLogin() {
+  const navigate = useNavigate();
+  const {setIsAdmin} = useAdminStoreBizStore();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -23,6 +27,8 @@ export default function AdminLogin() {
     }).then((res) => {
       localStorage.setItem("token", res.data.token);
       setError(null);
+      setIsAdmin(true);
+      navigate("/");
     }).catch((err) => {
       setError(err.response.data);
     });
@@ -55,3 +61,4 @@ export default function AdminLogin() {
     </form>
     );
 }
+
