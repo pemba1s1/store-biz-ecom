@@ -13,8 +13,10 @@ export default function AdminProductUpdate() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<Product>();
   const [ images, setImages ] = useState<File[]>([]);
   const [ imageUrl, setImageUrl ] = useState<string[]>([]);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     axiosInstance.get(`/product/${id}`).then((res) => {
       const product = res.data;
       console.log(res.data);
@@ -26,6 +28,7 @@ export default function AdminProductUpdate() {
       setValue('category', product.category);
       setValue('stock', product.stock);
       setImageUrl(product.image);
+      setLoading(false);
     }).catch((err) => {
       console.log(err);
     });
@@ -77,6 +80,7 @@ export default function AdminProductUpdate() {
   return (
     <div className="w-[60%] mx-auto mt-20">
       <h1 className="text-2xl font-bold mb-4">Update Product</h1>
+      {loading ? <p>Loading...</p> :
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="block">Title</label>
@@ -118,7 +122,7 @@ export default function AdminProductUpdate() {
         />
       </div>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Update Product</button>
-      </form>
+      </form>}
     </div>
     );
 }

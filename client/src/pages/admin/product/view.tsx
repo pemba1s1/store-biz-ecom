@@ -6,12 +6,15 @@ import axiosInstance from "../../../utils/axiosInstance";
 export default function AdminProductView() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     axiosInstance.get(`/product/${id}`).then((res) => {
       const product = res.data;
       console.log(res.data);
       setProduct(product);
+      setLoading(false);
     }).catch((err) => {
       console.log(err);
     });
@@ -19,6 +22,8 @@ export default function AdminProductView() {
   return (
     <div className="w-[70%] mx-auto mt-20">
       <h1 className="text-2xl font-bold mb-5">Product Details</h1>
+      {loading ? 
+      <p>Loading...</p> :
       <div className="flex justify-between">
         <div className="w-[40%] flex flex-col items-center">
           {product?.image && product.image.length > 0 ? (
@@ -42,7 +47,7 @@ export default function AdminProductView() {
           <p className="text-lg mt-3">Category: {product?.category}</p>
           <p className="text-lg mt-3">Description: {product?.description}</p>
         </div>
-      </div>
+      </div>}
     </div>
   )
 }
