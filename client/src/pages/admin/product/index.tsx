@@ -74,7 +74,7 @@ export default function AdminProduct() {
               <td className="border px-4 py-2">{product.category}</td>
               <td className="border px-4 py-2">{product.stock}</td>
               <td className="border px-4 py-2 flex gap-5 justify-center">
-                <button className="bg-blue-500 text-white px-4 py-1 rounded-md">View</button>
+                <button className="bg-blue-500 text-white px-4 py-1 rounded-md" onClick={() => navigate(`/product/${product._id}`)}>View</button>
                 <button className="bg-blue-500 text-white px-4 py-1 rounded-md" onClick={() => navigate(`/product/edit/${product._id}`)}>Edit</button>
                 <button className="bg-red-500 text-white px-4 py-1 rounded-md" onClick={() => openModal(product._id)}>Delete</button>
               </td>
