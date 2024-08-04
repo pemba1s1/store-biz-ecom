@@ -5,6 +5,7 @@ import AdminDashboard from "../pages/admin/dashboard";
 import AdminLogin from "../pages/admin/login";
 import AdminProduct from "../pages/admin/product";
 import AdminProductAdd from "../pages/admin/product/add";
+import AdminProductUpdate from "../pages/admin/product/update";
 
 export default function Router() {
   return (
@@ -13,6 +14,7 @@ export default function Router() {
       <Route path="/login" element={<AdminLogin />} />
       <Route path="/product" element={<AdminProduct />} />
       <Route path="/product/add" element={<AdminProductAdd />} />
+      <Route path="/product/edit/:id" element={<AdminProductUpdate />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   )

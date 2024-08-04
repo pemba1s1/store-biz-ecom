@@ -70,4 +70,33 @@ const uploadProduct = async function(req, res) {
   }
 }
 
-module.exports = { getTopDeals, getNewArrival, getProductById, getProductsByFilter, uploadProduct };
+const updateProduct = async function(req, res) {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).send('Product ID is required');
+  }
+
+  try {
+    const product = await ProductModel.findByIdAndUpdate( id, req.body, { new: true });
+    return res.status(201).send(product);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+}
+
+const deleteProduct = async function(req, res) {
+  const { id } = req.params;
+  console.log(id)
+  if (!id) {
+    return res.status(400).send('Product ID is required');
+  }
+
+  try {
+    await ProductModel.findByIdAndDelete(id);
+    return res.status(204).send();
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = { getTopDeals, getNewArrival, getProductById, getProductsByFilter, uploadProduct, updateProduct, deleteProduct };
