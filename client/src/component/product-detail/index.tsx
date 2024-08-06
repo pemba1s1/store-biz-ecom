@@ -17,6 +17,7 @@ export default function ProductDetail () {
 
   useEffect(() => {
     setLoading(true);
+    setQuantity(1);
     axiosInstance.get(`/product/${params.id}`)
     .then(res => {
       const product = res.data;

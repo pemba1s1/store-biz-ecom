@@ -1,10 +1,10 @@
 
 import { Routes, Route } from "react-router-dom";
-import Cart from "../pages/cart";
+import Cart from "../pages/store/cart";
 import ErrorPage from "../pages/error-page";
-import Home from "../pages/home";
-import ProductDetailPage from "../pages/product-detail";
-import CategoryPage from "../pages/category";
+import Home from "../pages/store/home";
+import CategoryPage from "../pages/store/category";
+import ProductDetailPage from "../pages/store/product-detail";
 
 export default function Router() {
   return (

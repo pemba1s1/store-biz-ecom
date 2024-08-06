@@ -1,7 +1,7 @@
 
-import Feature from "../../component/feature";
-import useStoreBizStore from "../../store/store";
-import CartItem from "../../component/cart-item";
+import Feature from "../../../component/feature";
+import useStoreBizStore from "../../../store/store";
+import CartItem from "../../../component/cart-item";
 import { useEffect, useState } from "react";
 
 export default function Cart() {

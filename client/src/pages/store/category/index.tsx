@@ -1,9 +1,9 @@
 
 import { useParams } from "react-router-dom";
-import ProductListContainer from "../../component/product-list-container";
-import { Category } from "../../constants/category";
-import { Filters } from "../../types/types";
 import { useEffect, useState } from "react";
+import Category from "../../../component/category";
+import ProductListContainer from "../../../component/product-list-container";
+import { Filters } from "../../../types/types";
 
 
 export default function CategoryPage() {
