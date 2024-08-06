@@ -16,3 +16,13 @@ export type Product = {
 export type Filters = {
   category?: string;
 }
+
+export type ShippingFormInputs = {
+  fullName: string;
+  email: string;
+  address: string;
+  city: string;
+  province: string;
+  zipCode: string;
+  country: string;
+};

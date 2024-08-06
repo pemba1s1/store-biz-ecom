@@ -3,7 +3,7 @@ import Banner from "../../../component/banner";
 import Carousel from "../../../component/carousel";
 import Feature from "../../../component/feature";
 import ProductCardContainer from "../../../component/product-card-container";
-import Category from "../category";
+import Category from "../../../component/category";
 
 
 export default function Home() {
