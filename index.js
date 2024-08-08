@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const productRoute = require('./routes/productRoute');
 const adminRoute = require('./routes/adminRoute');
+const paymentRoute = require('./routes/paymentRoute');
 
 const app = express();
 app.use(express.json());
@@ -28,6 +29,7 @@ const baseApiUrl = '/api/v1';
 
 app.use(`${baseApiUrl}/product`, productRoute);
 app.use(`${baseApiUrl}/admin`, adminRoute);
+app.use(`${baseApiUrl}/payment`, paymentRoute);
 
 connectDB().then(() => {
   app.listen(process.env.PORT, () => {

@@ -6,6 +6,8 @@ export type StoreBizStore = {
   setCartItems: (cartItems: Product[]) => void;
   shippingInformation: ShippingFormInputs;
   setShippingInformation: (shippingInformation: ShippingFormInputs) => void;
+  cartTotal: string;
+  setCartTotal: (cartTotal: string) => void;
 };
 
 const useStoreBizStore = create<StoreBizStore>((set) => ({
@@ -21,6 +23,8 @@ const useStoreBizStore = create<StoreBizStore>((set) => ({
     country: ""
   },
   setShippingInformation: (shippingInformation: ShippingFormInputs) => set({ shippingInformation }),
+  cartTotal: "",
+  setCartTotal: (cartTotal: string) => set({ cartTotal }),
 }));
 
 export default useStoreBizStore;

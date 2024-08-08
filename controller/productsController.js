@@ -41,12 +41,10 @@ const getProductById = async function(req, res) {
 
 const getProductsByFilter = async function(req, res) {
   const { filters } = req.query;
-  console.log(filters)
   const limit = 12;
   
   try {
     const products = await ProductModel.find(filters);
-    // console.log(products)
     return res.status(200).send(products);
   } catch (error) {
     return res.status(500).send('Internal Server Error');
@@ -86,7 +84,6 @@ const updateProduct = async function(req, res) {
 
 const deleteProduct = async function(req, res) {
   const { id } = req.params;
-  console.log(id)
   if (!id) {
     return res.status(400).send('Product ID is required');
   }

@@ -33,6 +33,7 @@ export default function Shipping({ triggerValidation }: { triggerValidation: Rea
           <input
             id="email"
             type="email"
+            value={shippingInformation.email}
             {...register('email')}
             onChange={handleChange}
             onBlur={() => trigger('email')}
@@ -48,6 +49,7 @@ export default function Shipping({ triggerValidation }: { triggerValidation: Rea
           <input
             id="fullName"
             type="text"
+            value={shippingInformation.fullName}
             {...register('fullName')}
             onChange={handleChange}
             onBlur={() => trigger('fullName')}
@@ -63,6 +65,7 @@ export default function Shipping({ triggerValidation }: { triggerValidation: Rea
           <input
             id="address"
             type="text"
+            value={shippingInformation.address}
             {...register('address')}
             onChange={handleChange}
             onBlur={() => trigger('address')}
@@ -78,6 +81,7 @@ export default function Shipping({ triggerValidation }: { triggerValidation: Rea
           <input
             id="city"
             type="text"
+            value={shippingInformation.city}
             {...register('city')}
             onChange={handleChange}
             onBlur={() => trigger('city')}
@@ -93,6 +97,7 @@ export default function Shipping({ triggerValidation }: { triggerValidation: Rea
           <input
             id="province"
             type="text"
+            value={shippingInformation.province}
             {...register('province')}
             onChange={handleChange}
             onBlur={() => trigger('province')}
@@ -108,6 +113,7 @@ export default function Shipping({ triggerValidation }: { triggerValidation: Rea
           <input
             id="zipCode"
             type="text"
+            value={shippingInformation.zipCode}
             {...register('zipCode')}
             onChange={handleChange}
             onBlur={() => trigger('zipCode')}
@@ -123,6 +129,7 @@ export default function Shipping({ triggerValidation }: { triggerValidation: Rea
           <input
             id="country"
             type="text"
+            value={shippingInformation.country}
             {...register('country')}
             onChange={handleChange}
             onBlur={() => trigger('country')}

@@ -3,7 +3,7 @@ import useStoreBizStore from "../../store/store";
 import { useEffect, useState } from "react";
 
 export default function OrderSummary ({ handleClick, btnText = "Proceed to Checkout" }: { handleClick: () => void, btnText?: string }) {
-  const { cartItems } = useStoreBizStore();
+  const { cartItems, setCartTotal } = useStoreBizStore();
   const [subTotal, setSubTotal] = useState("");
   const [discount, setDiscount] = useState("");
   const [shipping, setShipping] = useState("");
@@ -18,21 +18,26 @@ export default function OrderSummary ({ handleClick, btnText = "Proceed to Check
     let taxes = 0;
     let total = 0;
     for(const item of cartItems) {
+      let productDiscount = 0;
+      if (item.discount) {
+        productDiscount += parseFloat(item.price) * parseFloat(item.discount)/100;
+      }
       if (item.quantity) {
         subTotal += parseFloat(item.price) * item.quantity;
+        productDiscount *= item.quantity;
       }
-      if (item.discount) {
-        discount += parseFloat(item.price) * parseFloat(item.discount)/100;
-      }
-      shipping = subTotal * 0.1;
-      taxes = subTotal * 0.05;
-      total = subTotal - discount + shipping + taxes;
-      setSubTotal(subTotal.toFixed(2));
-      setDiscount(discount.toFixed(2));
-      setShipping(shipping.toFixed(2));
-      setTaxes(taxes.toFixed(2));
-      setTotal(total.toFixed(2));
-    }
+      discount += productDiscount;
+    }    
+    shipping = subTotal * 0.1;
+    taxes = subTotal * 0.05;
+    total = subTotal - discount + shipping + taxes;
+    setSubTotal(subTotal.toFixed(2));
+    setDiscount(discount.toFixed(2));
+    setShipping(shipping.toFixed(2));
+    setTaxes(taxes.toFixed(2));
+    setTotal(total.toFixed(2));
+    setCartTotal(total.toFixed(2));
+    console.log(total.toFixed(2));
   }, [cartItems]);
 
   if (cartItems.length > 0) {

@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import OrderSummary from "../../../component/order-summary";
 import Shipping from "./shipping";
 import { shippingInformationSchema } from "../../../schema/schema";
+import Payment from "./payment";
+import OrderReview from "./review";
 
 export default function Checkout() {
   const [step, setStep] = useState(0);
@@ -17,22 +19,31 @@ export default function Checkout() {
       schema: shippingInformationSchema
     },
     {
-      title: "Payment Information",
-      breadcrumbTitle: "Payment",
-      btnText: "Continue",
+      title: "Review your Order",
+      breadcrumbTitle: "Review",
+      btnText: "Proceed to Payment",
+      component: <OrderReview />,
       schema: shippingInformationSchema
     },
     {
-      title: "Review your Order",
-      breadcrumbTitle: "Review",
+      title: "Payment Information",
+      breadcrumbTitle: "Payment",
       btnText: "Place Order",
+      component: <Payment />,
       schema: shippingInformationSchema
     },
   ];
 
   const handleClick = async () => {
-    const isValid = await triggerValidation.current();
-    if (!isValid) return;
+    if (step == 0) {
+      const isValid = await triggerValidation.current();
+      if (!isValid) return;
+    } else if (step == 1) {
+      // Validate payment information
+    } else if (step === 2) {
+      // Place order
+      return;
+    }
     setStep(prevStep => prevStep + 1);
   };
 
