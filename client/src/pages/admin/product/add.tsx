@@ -6,12 +6,15 @@ import { supabase } from '../../../utils/supabaseClient';
 import { generateRandomString } from '../../../utils/random';
 import axiosInstance from '../../../utils/axiosInstance';
 import { toast } from 'react-toastify';
+import LoadingSpinner from '../../../component/loading-spinner';
 
 export default function AdminProductAdd() {
   const { register, handleSubmit, formState: { errors } } = useForm<Product>();
   const [ images, setImages ] = useState<File[]>([]);
+  const [ processing, setProcessing ] = useState(false);
 
   const onSubmit: SubmitHandler<Product> = async data => {
+    setProcessing(true);
     const imageUrls = await uploadImages();
     console.log(imageUrls);
     axiosInstance.post('/product', {
@@ -26,6 +29,7 @@ export default function AdminProductAdd() {
     }).catch(() => {
       toast.error("Failed to add product");
     });
+    setProcessing(false);
   };
 
   const uploadImages = async () => {
@@ -76,10 +80,6 @@ export default function AdminProductAdd() {
           <input {...register('discount')} className="border border-gray-300 px-2 py-1 rounded w-full" />
         </div>
         <div>
-          <label className="block">Quantity</label>
-          <input type="number" {...register('quantity')} className="border border-gray-300 px-2 py-1 rounded w-full" />
-        </div>
-        <div>
           <label className="block">Category</label>
           <input {...register('category')} className="border border-gray-300 px-2 py-1 rounded w-full" />
         </div>
@@ -95,8 +95,11 @@ export default function AdminProductAdd() {
             onChange={handleFileChange}
             className="border border-gray-300 px-2 py-1 rounded w-full"
         />
-      </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Add Product</button>
+        </div>
+        <div className='flex gap-2 items-center'>
+          <button disabled={processing} type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">{processing ? "Adding" : "Add Product"}</button>
+          {processing && <LoadingSpinner className='h-8 w-8'/>}
+        </div>
       </form>
     </div>
     );

@@ -3,6 +3,7 @@ import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
 import { useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import useStoreBizStore from '../../store/store';
+import OrderSummary from '../order-summary';
 
 export default function PaymentForm () {
   const stripe = useStripe();
@@ -12,9 +13,7 @@ export default function PaymentForm () {
   const [message, setMessage] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     if (!stripe || !elements) {
       return;
     }
@@ -38,31 +37,25 @@ export default function PaymentForm () {
       clientSecret,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
+        return_url: `${window.location.origin}/completion/123`,
       },
-    });
+    })
 
     if ((error.type === "card_error" || error.type === "validation_error") && error.message) {
       setMessage(error.message);
     } else {
       setMessage("An unexpected error occured.");
     }
-
     setIsProcessing(false);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <PaymentElement id="payment-element"/>
-      <button 
-        disabled={isProcessing || !stripe || !elements} 
-        id="submit"
-        className='text-white w-full p-5 bg-black mt-2 rounded-md font-bold disabled:opacity-50 disabled:animate-pulse'>
-        <span id="button-text">
-          {isProcessing ? "Processing ... " : "Pay now"}
-        </span>
-      </button>
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+    <>
+      <form>
+        <PaymentElement id="payment-element"/>
+        {message && <div className='text-red-600'>{message}</div>}
+      </form>
+      <OrderSummary handleClick={handleSubmit} btnText={isProcessing ? "Placing Order" : "Place Order"} disabled={isProcessing || !stripe || !elements} />
+    </>
   );
 }

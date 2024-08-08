@@ -38,14 +38,17 @@ export default function Checkout() {
     if (step == 0) {
       const isValid = await triggerValidation.current();
       if (!isValid) return;
-    } else if (step == 1) {
-      // Validate payment information
-    } else if (step === 2) {
-      // Place order
-      return;
     }
     setStep(prevStep => prevStep + 1);
   };
+
+  const changeStep = async (index: number) => {
+    if (index != 0) {
+      const isValid = await triggerValidation.current();
+      if (!isValid) return;
+    }
+    setStep(index);
+  }
 
   return (
     <>
@@ -56,7 +59,7 @@ export default function Checkout() {
             <ul className="flex gap-6 text-lg">
               {
                 steps.map((s, index) => (
-                  <li key={index} className={`flex gap-2 ${index <= step ? 'font-semibold' : 'text-gray-500'}`} onClick={() => setStep(index)}>
+                  <li key={index} className={`flex gap-2 ${index <= step ? 'font-semibold' : 'text-gray-500'}`} onClick={() => changeStep(index)}>
                     <div className={` flex items-center justify-center h-[30px] w-[30px] rounded-full ${index <= step ? 'text-white bg-black' : 'border-2 border-black'} `}>{ index + 1 }</div>
                     { s.breadcrumbTitle }
                   </li>
@@ -71,7 +74,7 @@ export default function Checkout() {
           <h2 className="text-xl font-semibold mb-5">{ steps[ step ].title }</h2>
           <div className="flex justify-between">
             { steps[ step ].component }
-            <OrderSummary handleClick={ handleClick } btnText={ steps[ step ].btnText }/>
+            { step != 2 && <OrderSummary handleClick={ handleClick } btnText={ steps[ step ].btnText }/> }
           </div>
         </div>
       </div>

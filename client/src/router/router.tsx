@@ -6,6 +6,7 @@ import Home from "../pages/store/home";
 import CategoryPage from "../pages/store/category";
 import ProductDetailPage from "../pages/store/product-detail";
 import Checkout from "../pages/store/checkout";
+import ThankYou from "../pages/store/checkout/thank-you";
 
 export default function Router() {
   return (
@@ -15,6 +16,7 @@ export default function Router() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/category/:category" element={<CategoryPage />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/completion/:id" element={<ThankYou />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   )

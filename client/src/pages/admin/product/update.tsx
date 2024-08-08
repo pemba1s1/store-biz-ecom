@@ -7,6 +7,7 @@ import { generateRandomString } from '../../../utils/random';
 import axiosInstance from '../../../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
+import LoadingSpinner from '../../../component/loading-spinner';
 
 export default function AdminProductUpdate() {
   const { id } = useParams();
@@ -14,6 +15,7 @@ export default function AdminProductUpdate() {
   const [ images, setImages ] = useState<File[]>([]);
   const [ imageUrl, setImageUrl ] = useState<string[]>([]);
   const [ loading, setLoading ] = useState(true);
+  const [ processing, setProcessing ] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -35,6 +37,7 @@ export default function AdminProductUpdate() {
   },[id])
 
   const onSubmit: SubmitHandler<Product> = async data => {
+    setProcessing(true);
     const imageUrls = await uploadImages();
     imageUrls.push(...imageUrl);
     axiosInstance.put(`/product/${id}`, {
@@ -50,6 +53,7 @@ export default function AdminProductUpdate() {
     }).catch(() => {
       toast.error("Failed to update product");
     });
+    setProcessing(false);
   };
 
   const uploadImages = async () => {
@@ -101,10 +105,6 @@ export default function AdminProductUpdate() {
           <input {...register('discount')} className="border border-gray-300 px-2 py-1 rounded w-full" />
         </div>
         <div>
-          <label className="block">Quantity</label>
-          <input type="number" {...register('quantity')} className="border border-gray-300 px-2 py-1 rounded w-full" />
-        </div>
-        <div>
           <label className="block">Category</label>
           <input {...register('category')} className="border border-gray-300 px-2 py-1 rounded w-full" />
         </div>
@@ -120,8 +120,11 @@ export default function AdminProductUpdate() {
             onChange={handleFileChange}
             className="border border-gray-300 px-2 py-1 rounded w-full"
         />
-      </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Update Product</button>
+        </div>
+        <div className='flex gap-2 items-center'>
+          <button disabled={processing} type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">{processing ? "Updating" : "Update Product"}</button>
+          {processing && <LoadingSpinner className='h-8 w-8'/>}
+        </div>
       </form>}
     </div>
     );

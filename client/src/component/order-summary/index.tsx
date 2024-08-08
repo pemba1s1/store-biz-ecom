@@ -2,7 +2,7 @@
 import useStoreBizStore from "../../store/store";
 import { useEffect, useState } from "react";
 
-export default function OrderSummary ({ handleClick, btnText = "Proceed to Checkout" }: { handleClick: () => void, btnText?: string }) {
+export default function OrderSummary ({ handleClick, btnText = "Proceed to Checkout", disabled = false }: { handleClick: () => void, btnText?: string, disabled?: boolean }) {
   const { cartItems, setCartTotal } = useStoreBizStore();
   const [subTotal, setSubTotal] = useState("");
   const [discount, setDiscount] = useState("");
@@ -66,7 +66,8 @@ export default function OrderSummary ({ handleClick, btnText = "Proceed to Check
         </div>
         <div>
           <button 
-            className="bg-white text-black border border-black hover:bg-black hover:text-white w-full py-3 mt-5 rounded-lg" 
+            className={`${disabled ? "bg-black text-white" : "bg-white text-black hover:bg-black hover:text-white"} border border-black w-full py-3 mt-5 rounded-lg`}
+            disabled={disabled}
             onClick={handleClick}>
               { btnText }
           </button>
