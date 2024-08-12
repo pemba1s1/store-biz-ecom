@@ -25,7 +25,7 @@ export default function AdminNavbar() {
       setIsAdmin(false);
       navigate("/login");
     });
-  },[])
+  },[isAdmin])
   
   const handleLogout = () => {
     localStorage.removeItem("token");
