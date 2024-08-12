@@ -193,7 +193,7 @@ const category = [
 ];
 
 const admin = new UserModel({
-  username: "admin",
+  username: process.env.ADMIN_USERNAME,
   password: process.env.ADMIN_PASSWORD,
   email: "admin@admin.com",
   role: "admin",
