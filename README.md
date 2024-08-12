@@ -45,7 +45,13 @@ Install Dependencies:
 npm install
 npm run install-client
 ````
-Copy env files
+Copy env files. 
+
+Stripe is used as payment processor so make sure to add your stripe key in env. 
+
+Supabase Storage is used to store images so set your supabase url and key in env. 
+
+Admin credentials are passed from env while seeding.
 ````
 cp .env.example .env
 cd client && cp .env.example .env
