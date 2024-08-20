@@ -1,26 +1,16 @@
 
 import { useState } from "react";
 import axiosInstance from "../../../../utils/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useStoreBizStore from "../../../../store/store";
+import LoginForm from "../../../../component/login";
 
 export default function UserLogin() {
   const navigate = useNavigate();
   const { setUser } = useStoreBizStore();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (username: string, password: string) => {
     axiosInstance.post("/user/login", {
       username,
       password,
@@ -36,30 +26,11 @@ export default function UserLogin() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center h-[500px] justify-center">        
-      <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
-      <input
-      type="name"
-      placeholder="Username"
-      value={username}
-      onChange={handleEmailChange}
-      className="border w-[400px] border-gray-300 rounded-md px-4 py-2 mb-4"
-      />
-      <input
-      type="password"
-      placeholder="Password"
-      value={password}
-      onChange={handlePasswordChange}
-      className="border w-[400px] border-gray-300 rounded-md px-4 py-2 mb-4"
-      />
-      {error && <p className="text-red-500 w-[400px] mb-2">{error}</p>}
-      <button
-      type="submit"
-      className="bg-blue-500 w-[400px] text-white rounded-md px-4 py-2"
-      >
-      Login
-      </button>
-    </form>
+    <div className="flex flex-col h-[500px] items-center justify-center">
+      <h1 className="text-2xl font-bold mb-4">Sign In</h1>
+      <LoginForm handleLogin={handleSubmit} error={error} />
+      <p className="mt-4">Don't have an account? <Link to="/account/register" className="text-blue-500">Register</Link></p>
+    </div>
     );
 }
 
