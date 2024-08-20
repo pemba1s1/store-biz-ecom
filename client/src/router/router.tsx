@@ -7,6 +7,8 @@ import CategoryPage from "../pages/store/category";
 import ProductDetailPage from "../pages/store/product-detail";
 import Checkout from "../pages/store/checkout";
 import ThankYou from "../pages/store/checkout/thank-you";
+import Account from "../pages/store/account";
+import UserLogin from "../pages/store/account/login";
 
 export default function Router() {
   return (
@@ -17,6 +19,8 @@ export default function Router() {
       <Route path="/category/:category" element={<CategoryPage />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/completion/:id" element={<ThankYou />} />
+      <Route path="/account" element={<Account />} />
+      <Route path="/account/login" element={<UserLogin />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   )

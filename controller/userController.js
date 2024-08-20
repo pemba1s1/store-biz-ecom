@@ -15,7 +15,10 @@ const UserLogin = async (req,res) => {
     return res.status(400).send('Invalid credentials');
   }
   const token = user.generateAuthToken();
-  return res.status(200).send({ token });
+  return res.status(200).send({ 
+    user: { _id: user._id, username: user.username, email: user.email }, 
+    token 
+  });
 }
 
 const RegisterUser = async (req,res) => {

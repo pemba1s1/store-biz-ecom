@@ -1,7 +1,9 @@
 import { create } from 'zustand';
-import { Product, ShippingFormInputs } from '../types/types';
+import { Product, ShippingFormInputs, User } from '../types/types';
 
 export type StoreBizStore = {
+  user: User | null;
+  setUser: (user: User | null) => void;
   cartItems: Product[];
   setCartItems: (cartItems: Product[]) => void;
   shippingInformation: ShippingFormInputs;
@@ -11,6 +13,8 @@ export type StoreBizStore = {
 };
 
 const useStoreBizStore = create<StoreBizStore>((set) => ({
+  user: null,
+  setUser: (user: User | null) => set({ user }),
   cartItems: [],
   setCartItems: (cartItems: Product[]) => set({ cartItems }),
   shippingInformation: {

@@ -26,3 +26,10 @@ export type ShippingFormInputs = {
   zipCode: string;
   country: string;
 };
+
+export type User = {
+  _id: string;
+  username: string;
+  email: string;
+};
+
