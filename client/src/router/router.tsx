@@ -9,6 +9,7 @@ import Checkout from "../pages/store/checkout";
 import ThankYou from "../pages/store/checkout/thank-you";
 import Account from "../pages/store/account";
 import UserLogin from "../pages/store/account/login";
+import UserRegister from "../pages/store/account/register";
 
 export default function Router() {
   return (
@@ -21,6 +22,7 @@ export default function Router() {
       <Route path="/completion/:id" element={<ThankYou />} />
       <Route path="/account" element={<Account />} />
       <Route path="/account/login" element={<UserLogin />} />
+      <Route path="/account/register" element={<UserRegister />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   )

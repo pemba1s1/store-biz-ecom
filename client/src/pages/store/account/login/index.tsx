@@ -10,7 +10,7 @@ export default function UserLogin() {
   const { setUser } = useStoreBizStore();
   const [error, setError] = useState(null);
 
-  const handleSubmit = (username: string, password: string) => {
+  const handleLogin = (username: string, password: string) => {
     axiosInstance.post("/user/login", {
       username,
       password,
@@ -28,7 +28,7 @@ export default function UserLogin() {
   return (
     <div className="flex flex-col h-[500px] items-center justify-center">
       <h1 className="text-2xl font-bold mb-4">Sign In</h1>
-      <LoginForm handleLogin={handleSubmit} error={error} />
+      <LoginForm handleLogin={handleLogin} error={error} />
       <p className="mt-4">Don't have an account? <Link to="/account/register" className="text-blue-500">Register</Link></p>
     </div>
     );

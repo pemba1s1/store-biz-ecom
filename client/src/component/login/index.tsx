@@ -10,7 +10,7 @@ export default function LoginForm({ handleLogin, error }: LoginProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
 
@@ -29,7 +29,7 @@ export default function LoginForm({ handleLogin, error }: LoginProps) {
       type="name"
       placeholder="Username"
       value={username}
-      onChange={handleEmailChange}
+      onChange={handleUsernameChange}
       className="border w-[400px] border-gray-300 rounded-md px-4 py-2 mb-4"
       />
       <input
