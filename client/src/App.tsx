@@ -13,8 +13,8 @@ function App() {
     }
   }, [subhost]);
   
-  if (subhost == "store") return <Store />
-  else if (subhost == "admin") return <Admin />
+  if (subhost == "store" || subhost == "store-bizstore") return <Store />
+  else if (subhost == "admin" || subhost == "admin-bizstore") return <Admin />
 }
 
 export default App
