@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const allowedOrigins = process.env.NODE_ENV === 'production' ? ['https://admin-bizstore.vercel.app', 'https://store-bizstore.vercel.app'] : ['http://admin.localhost:5173', 'http://store.localhost:5173'];
+const allowedOrigins = process.env.NODE_ENV === 'production' ? ['https://admin-bizstore.vercel.app', 'https://store-bizstore.vercel.app'] : ['http://admin.localhost', 'http://store.localhost'];
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
