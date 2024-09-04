@@ -37,7 +37,7 @@ export default function PaymentForm () {
       clientSecret,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://store.localhost/completion/123`,
+        return_url: `${window.location.origin}/completion/123`,
       },
     })
 

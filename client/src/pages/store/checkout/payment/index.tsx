@@ -14,7 +14,7 @@ export default function Payment() {
     {stripePromise && (
       <Elements stripe={stripePromise} options={{ 
         mode: 'payment',
-        amount:  parseFloat(cartTotal)* 100,
+        amount:  parseFloat((parseFloat(cartTotal)* 100).toFixed()),
         currency: 'cad',
        }}>
         <PaymentForm />
