@@ -27,7 +27,7 @@ export default function PaymentForm () {
     setIsProcessing(true);
 
     const res = await axiosInstance.post('/payment/create-payment-intent', {
-      amount: parseFloat(cartTotal) * 100
+      amount: parseFloat((parseFloat(cartTotal)* 100).toFixed()),
     });
 
     const clientSecret = await res.data.clientSecret;
